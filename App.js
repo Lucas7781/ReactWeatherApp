@@ -1,34 +1,101 @@
 import { StatusBar } from 'expo-status-bar';
-import {StyleSheet, Text, View} from 'react-native';
-import {Image, TouchableOpacity} from "react-native-web";
+import {StyleSheet, Text, View, Image, TouchableOpacity, Platform} from 'react-native';
+import {NavigationContainer, useNavigation} from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 const App = () => {
+    const Stack = createNativeStackNavigator();
     return (
+        <NavigationContainer>
+            <Stack.Navigator screenOptions = {{headerShown: false}}>
+                <Stack.Screen name = "Home" component={HomeScreen} options={{title:'Welcome'}}/>
+                <Stack.Screen name = "Weather" component={WeatherScreen}/>
+                <Stack.Screen name = "About Us" component={AboutUsScreen}/>
+                <Stack.Screen name = "Contact" component={ContactScreen}/>
+            </Stack.Navigator>
+        </NavigationContainer>
+    );
+}
+
+function TopMenu() {
+    const navigation = useNavigation();
+    return(
+        <View style={{flex: 1, flexDirection: 'row', paddingVertical: Platform.OS === 'web' ? '1%' : '11%'}}>
+            <TouchableOpacity onPress={() => navigation.navigate("Home")} style={styles.menuButton}>
+                <Text style={styles.menuText}>Home</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('Weather')} style={styles.menuButton}>
+                <Text style={styles.menuText}>Weather</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('About Us')} style={styles.menuButton}>
+                <Text style={styles.menuText}>About Us</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('Contact')} style={styles.menuButton}>
+                <Text style={styles.menuText}>Contact</Text>
+            </TouchableOpacity>
+        </View>
+    )
+}
+
+const HomeScreen = () => {
+    return(
         <View style={{flex:1, backgroundColor:'skyblue'}}>
-            <View style={{flex: 1, flexDirection: 'row'}}>
-                <TouchableOpacity style={styles.menuButton}>
-                    <Text style={styles.menuText}>Home</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.menuButton}>
-                    <Text style={styles.menuText}>About Us</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.menuButton}>
-                    <Text style={styles.menuText}>Contact</Text>
-                </TouchableOpacity>
-            </View>
+            <TopMenu />
             <View style={styles.centralText}>
-                <Image source={require('./img/logo.png')}/>
+                <Image source={require('./assets/logo.png')}  resizeMode={'center'} style={{height: 100, width: '100%'}}/>
                 <Text style={styles.edit}>Weather App!</Text>
                 <Text style={styles.HelloWorld}> Hello World! </Text>
             </View>
             <StatusBar style="auto" />
         </View>
-    );
+    )
+}
+
+const WeatherScreen = () => {
+    return (
+        <View style={{flex:1, backgroundColor:'skyblue'}}>
+            <TopMenu />
+            <View style={styles.centralText}>
+                <Image source={require('./assets/logo.png')}  resizeMode={'center'} style={{height: 100, width: '100%'}}/>
+                <Text style={styles.edit}>It is raining today!</Text>
+            </View>
+            <StatusBar style="auto" />
+        </View>
+    )
+}
+
+
+const AboutUsScreen = () => {
+    return (
+        <View style={{flex:1, backgroundColor:'skyblue'}}>
+            <TopMenu />
+            <View style={styles.centralText}>
+                <Image source={require('./assets/logo.png')}  resizeMode={'center'} style={{height: 100, width: '100%'}}/>
+                <Text style={styles.edit}>Welcome to the 2nd screen!</Text>
+                <Text style={styles.HelloWorld}> Time to figure it out.. </Text>
+            </View>
+            <StatusBar style="auto" />
+        </View>
+    )
+}
+
+const ContactScreen = () => {
+    return (
+        <View style={{flex:1, backgroundColor:'skyblue'}}>
+            <TopMenu />
+            <View style={styles.centralText}>
+                <Image source={require('./assets/logo.png')}  resizeMode={'center'} style={{height: 100, width: '100%'}}/>
+                <Text style={styles.edit}>Welcome to Contact!</Text>
+                <Text style={styles.HelloWorld}> Here you find the information to contact us. </Text>
+            </View>
+            <StatusBar style="auto" />
+        </View>
+    )
 }
 
 const styles = StyleSheet.create({
     centralText: {
-        flex: 18,
+        flex: 16,
         alignItems: 'center',   //Center horizontal axis
         justifyContent: 'center', // Center vertical axis
     },
@@ -36,8 +103,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        paddingVertical: 12,
-        paddingHorizontal: 16,
+        paddingHorizontal: 12,
         borderRadius: 30,
         backgroundColor: 'darkblue',
     },
