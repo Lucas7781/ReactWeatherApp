@@ -1,7 +1,10 @@
-import { StatusBar } from 'expo-status-bar';
 import {StyleSheet, Text, View, Image, TouchableOpacity, Platform} from 'react-native';
 import {NavigationContainer, useNavigation} from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import HomeScreen from "./Pages/Home";
+import WeatherScreen from "./Pages/Weather";
+import AboutUsScreen from "./Pages/AboutUs";
+import ContactScreen from "./Pages/Contact";
 
 const App = () => {
     const Stack = createNativeStackNavigator();
@@ -33,62 +36,6 @@ function TopMenu() {
             <TouchableOpacity onPress={() => navigation.navigate('Contact')} style={styles.menuButton}>
                 <Text style={styles.menuText}>Contact</Text>
             </TouchableOpacity>
-        </View>
-    )
-}
-
-const HomeScreen = () => {
-    return(
-        <View style={{flex:1, backgroundColor:'skyblue'}}>
-            <TopMenu />
-            <View style={styles.centralText}>
-                <Image source={require('./assets/logo.png')}  resizeMode={'center'} style={{height: 100, width: '100%'}}/>
-                <Text style={styles.edit}>Weather App!</Text>
-                <Text style={styles.HelloWorld}> Hello World! </Text>
-            </View>
-            <StatusBar style="auto" />
-        </View>
-    )
-}
-
-const WeatherScreen = () => {
-    return (
-        <View style={{flex:1, backgroundColor:'skyblue'}}>
-            <TopMenu />
-            <View style={styles.centralText}>
-                <Image source={require('./assets/logo.png')}  resizeMode={'center'} style={{height: 100, width: '100%'}}/>
-                <Text style={styles.edit}>It is raining today!</Text>
-            </View>
-            <StatusBar style="auto" />
-        </View>
-    )
-}
-
-
-const AboutUsScreen = () => {
-    return (
-        <View style={{flex:1, backgroundColor:'skyblue'}}>
-            <TopMenu />
-            <View style={styles.centralText}>
-                <Image source={require('./assets/logo.png')}  resizeMode={'center'} style={{height: 100, width: '100%'}}/>
-                <Text style={styles.edit}>Welcome to the 2nd screen!</Text>
-                <Text style={styles.HelloWorld}> Time to figure it out.. </Text>
-            </View>
-            <StatusBar style="auto" />
-        </View>
-    )
-}
-
-const ContactScreen = () => {
-    return (
-        <View style={{flex:1, backgroundColor:'skyblue'}}>
-            <TopMenu />
-            <View style={styles.centralText}>
-                <Image source={require('./assets/logo.png')}  resizeMode={'center'} style={{height: 100, width: '100%'}}/>
-                <Text style={styles.edit}>Welcome to Contact!</Text>
-                <Text style={styles.HelloWorld}> Here you find the information to contact us. </Text>
-            </View>
-            <StatusBar style="auto" />
         </View>
     )
 }
