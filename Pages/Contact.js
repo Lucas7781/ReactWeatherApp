@@ -1,5 +1,7 @@
 import {Image, Text, View} from "react-native";
 import {StatusBar} from "expo-status-bar";
+import styles from "../Style";
+import TopMenu from "./TopMenu";
 
 const ContactScreen = () => {
     return (

@@ -1,6 +1,8 @@
 import {Image, Text, View} from "react-native";
 import {StatusBar} from "expo-status-bar";
 import {useEffect, useState} from "react";
+import styles from "../Style";
+import TopMenu from "./TopMenu";
 
 const WeatherScreen = () => {
     const url = "Google.com";
